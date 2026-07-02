@@ -1,8 +1,9 @@
-import { Router } from "express";
+import { StatusCodes } from 'http-status-codes';
+import { Router } from 'express';
 
 export const userRouter = Router();
 
-userRouter.get('/users/@me', async (req, res) => {
-    // gets info from the current user
+userRouter.get('/@me', (req, res) => {
+    const user = req.user!;
+    res.status(StatusCodes.OK).json({ id: user.id, username: user.username });
 });
-
